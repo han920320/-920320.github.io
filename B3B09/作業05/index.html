@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<title>作業05</title>
+	<style>
+        h4 {
+            color: pink;
+        }
+        p {
+            margin: 5px;
+        }
+        div {
+            color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+<script>
+    var myName = "楊舒涵";
+    var myAge = 21;
+    var myHeight =160;myWeight =55;
+    document.write("<p>1.我是B3B09 " + myName + "</p>");
+    document.write("<p><h4>2.大家好！我最喜歡吃的水果是草莓</h4></p>");
+    document.write("<div>以下為變數設定練習</div>");
+    document.write("<p>3.我是" + myName + "，今年" + myAge + "歲" + "</p>");
+    document.write("<p>4.我的身高為" + myHeight + "公分，" + "我的體重為" + myWeight + "公斤" + "</p>");
+    document.write("<p>5.所以我的BMI為" + myWeight / Math.pow((myHeight/100),2)  + "</p>");
+    document.write("<div>以下for計次迴圈控制</div>");
+    var sum = 0;
+    for (i=1;i<=100;i++){
+        sum += i;
+    }
+    document.write("<p>6.從1加到100的總和為" + sum);
+    var count = 6;
+    function showSum(endNo){
+        var sum = 0;
+        for (i=1;i<=endNo;i++){
+            sum += i;
+        }
+        count += 1;
+        document.write("<p>"+ count + ".從1加到" + endNo + "的總和為" + sum + "</p>");
+    }
+    showSum(10);
+    showSum(100);
+    showSum(1000);
+    showSum(10000);
+    document.write("<div>以下為九九乘法表</div>");
+
+    function nTimesNtable(n){
+        for (i=1;i<=n;i++){
+            for (j=1;j<=n;j++){
+                document.write(i + "X" + j + "=" + i*j + "  ");
+            }
+            document.write("<br>");
+        }
+    }
+    nTimesNtable(9);
+
+</script>
+
+</body>
+
+</html>
+<script>
+(function() {
+  var ws = new WebSocket('ws://' + window.location.host +
+             '/jb-server-page?reloadMode=RELOAD_ON_SAVE&'+
+             'referrer=' + encodeURIComponent(window.location.pathname));
+  ws.onmessage = function (msg) {
+      if (msg.data === 'reload') {
+          window.location.reload();
+      }
+      if (msg.data.startsWith('update-css ')) {
+          var messageId = msg.data.substring(11);
+          var links = document.getElementsByTagName('link');
+          for (var i = 0; i < links.length; i++) {
+              var link = links[i];
+              if (link.rel !== 'stylesheet') continue;
+              var clonedLink = link.cloneNode(true);
+              var newHref = link.href.replace(/(&|\?)jbUpdateLinksId=\d+/, "$1jbUpdateLinksId=" + messageId);
+              if (newHref !== link.href) {
+                clonedLink.href = newHref;
+              }
+              else {
+                var indexOfQuest = newHref.indexOf('?');
+                if (indexOfQuest >= 0) {
+                  // to support ?foo#hash
+                  clonedLink.href = newHref.substring(0, indexOfQuest + 1) + 'jbUpdateLinksId=' + messageId + '&' +
+                                    newHref.substring(indexOfQuest + 1);
+                }
+                else {
+                  clonedLink.href += '?' + 'jbUpdateLinksId=' + messageId;
+                }
+              }
+              link.replaceWith(clonedLink);
+          }
+      }
+  };
+})();
+</script>
