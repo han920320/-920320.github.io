@@ -1,90 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8">
-	<title>課堂作業06</title>
+	<title>作業06</title>
 	<style>
       h4 {
           color: red;
       }
       label {
-            color: blue;
+          color: blue;
       }
       input {
-            color:brown;
+          color: brown;
       }
       div {
           color: blue;
           margin: 5px;
       }
-    </style>
+   </style>
+
 </head>
 <body>
-<form  id ="form01">
-	<label>姓名：</label>
+<form id ="form01">
+	<label>姓名:</label>
 	<input type="text" name="name01" value="楊舒涵"><br>
-	<label>收件住址：</label>
+	<label>收件住址:</label>
 	<input type="text" name="address01" value="新北市蘆洲區仁愛街23號2樓"><br>
-	<label>電話：</label>
-	<input typy="tel" name="tel01" value="0958921169"><br>
-	<label>電子郵件：</label>
+	<label>電話:</label>
+	<input type="tel" name="tel01" value="0958921169"><br>
+	<label>電子郵件:</label>
 	<input type="email" name="email01" value="shuhan920320@gmail.com"><br>
-	<label>指定送貨日期：</label>
+	<label>指定送貨日期:</label>
 	<input type="date" name="date01"><br>
-	<label>水果種類：（三選一）</label>
-	<input type="radio" name="fruit" id="fruit01" value="愛文芒果（1箱）">愛文芒果（1箱）475元<br>
-	<input type="radio" name="fruit" id="fruit02" value="有機木瓜（6台斤）">有機木瓜（6台斤）435元<br>
-	<input type="radio" name="fruit" id="fruit03" value="黑鑽石桑葚（5台斤）">黑鑽石桑葚（5台斤）749元<br>
+	<label>水果種類:(三選一)</label><br>
+	<input type="radio" name="fruit" id="fruit01" value="愛文芒果(1箱)">愛文芒果(1箱) 475元<br>
+	<input type="radio" name="fruit" id="fruit02" value="有機木瓜(6台斤)">有機木瓜(6台斤) 435元<br>
+	<input type="radio" name="fruit" id="fruit03" value="黑鑽石桑葚(5台斤)">黑鑽石桑葚(5台斤) 749元<br>
 </form>
 <br>
 <button onclick="shoppingInfo()"><h4>結帳</h4></button>
 <div id="demo"></div>
 <script>
-    function shoppingInfo(){
-      const x =document.getElementById("form01");
-      var item =" ";
-      var price = 0;
-      var text = "<h4>您的購物資訊如下：</h4>";
-      var i;
-      for(i = 0; i < 5;i++){
-        switch(i){
-          case 0:
-            item="姓名：";
-            break;
-          case 1:
-            item="收件地址：";
-            break;
-          case 2:
-            item="電話：";
-            break;
-          case 3:
-            item="電子郵件：";
-            break;
-          case 4:
-            item ="指定送貨日期：";
-            break;
-      }
-      text += item + x.elements[i].value + "<br>";
-    }
-      for (i = 5; i <= 7; i++){
-        if (x.elements[i].check == true){
-          switch(i){
-            case 5:
-            price = 475;
-            break;
-            case 6:
-            price = 435;
-            break;
-            case 7:
-            price = 749
-            break;
-          }
-          text +="水果種類：" + x.elements[i].value + "<br>";
-          text +="價格合計：" + price + "元<br>";
-        }
-      }
-      document.getElementById("demo").innerHTML = text ;
-    }
+	function shoppingInfo() {
+	    const x =document.getElementById("form01");
+	    var item = " ";
+	    var price = 0;
+	    var text = "<h4>您的購物資訊如下:</h4>";
+	    var i;
+	    for (i = 0; i < 5; i++){
+	        switch (i) {
+	            case 0:
+	                item = "姓名: ";
+	                break;
+	            case 1:
+	                item = "收件地址: ";
+	                break;
+	            case 2:
+	                item = "電話: ";
+	                break;
+	            case 3:
+	                item = "電子郵件: ";
+	                break;
+	            case 4:
+	                item = "指定送貨日期: ";
+	                break;
+	        }
+	        text += item + x.elements[i].value + "<br>";
+	    }
+	    for (i =5; i<= 7; i++){
+	        if (x.elements[i].checked == true){
+	            switch (i) {
+	                case 5:
+	                price = 475;
+	                break;
+	                case 6:
+	                price = 435;
+	                break;
+	                case 7:
+	                price = 749;
+	                break;
+	            }
+	            text += "水果種類:" + x.elements[i].value + "<br>";
+	            text += "價格合計:" + price + "元<br>";
+	        }
+	    }
+	    document.getElementById("demo").innerHTML = text;
+	}
+
 </script>
 </body>
 </html>
+
