@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<title>基本統計量</title>
+
+	<style>
+
+		#form02 {
+
+            color: red;
+
+            color: brown;
+
+        }
+
+        button {
+
+            padding: 10px 20px;
+
+            font-size: 16px;
+
+            border: none;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+        }
+
+        .btn01 {
+
+            color: white;
+
+            background-color: pink;
+
+        }
+
+        .btn02 {
+
+            color: white;
+
+            background-color: indigo;
+
+        }
+
+	</style>
+
+</head>
+
+<body>
+
+<form id="form01">
+
+	<label>待輸入的資料個數為</label>
+
+	<input type="number" name="number01" placeholder="0"><br>
+
+</form>
+
+<button class="btn01" onclick="inputNo()">產生輸入表格</button>
+
+<div id="demo01"></div>
+
+<div id="demo02"></div>
+
+<script>
+
+	var no = 0;
+
+    function inputNo() {
+
+        const x = document.getElementById("form01");
+
+        var item = x.elements[0].value;
+
+        no = item;
+
+        var text01 = "<form id=\"form02\">";
+
+        for (i = 1; i <= item; i++) {
+
+            text01 += i + ". ";
+
+            text01 += "<input type=\"text\">" + "<br>";
+
+        }
+
+        text01 += "</form>" + "<br>";
+
+        text01 += "<button class=\"btn02\" onclick=\"stat()\">計算統計量</button>";
+
+        document.getElementById("demo01").innerHTML = text01;
+
+    }
+
+    function stat() {
+
+        const y = document.getElementById("form02");
+
+        var sum = 0;
+
+        var sum01 = 0;
+
+        var text02 = "";
+
+        for (i = 0; i < no; i++) {
+
+            sum += Number(y.elements[i].value);
+
+            sum01 += Math.pow(Number(y.elements[i].value), 2);
+
+            text02 += "第" + (i + 1) + "個數值為" + y.elements[i].value + "<br>";
+
+        }
+
+        text02 += "<h4>平均數= " + sum / no + "</h4>";
+
+        text02 += "<h4>標準差= " + Math.sqrt((sum01 - sum * sum / no) / (no - 1)) + "</h4>";
+
+        document.getElementById("demo02").innerHTML = text02;
+
+    }
+
+</script>
+
+</body>
+
+</html>
