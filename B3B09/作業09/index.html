@@ -1,44 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 	<meta charset="UTF-8">
-		<title>課堂作業01</title>
+	<title>作業09</title>
 	<style>
-		div {
-			margin: 15px;
-			text-align: justify;
-			line-height: 30px;
-		}
-		h3 {
-			color: blue;
-		}
-		span {
-			color: red;
-			font-weight: bolder;
-		}
-	</style>
+      h4 {
+          color: green;
+      }
+      div {
+          color: pink;
+          margin: 5px;
+      }
+   </style>
+
 </head>
-	<body>
-        <h2>嘉賓果</h2>
-		<h3>長在樹幹上的葡萄</h3>
-		<div>
-			長相似葡萄，味道似葡萄，名字似葡萄，卻不是葡萄。披著紫色外衣的甚麼神秘的水果呢？答案是嘉賓果！嘉賓果(Jabuticaba)，除了有人叫它「樹葡萄」、「美味熱帶葡萄」，有一個非常美麗的別名──擬愛神木，是遠從中南美洲(巴西)而來的亞熱帶水果。
-		</div>
-		<div ><img src="pic01.jpg" width="400"></div>
-		<h3>古老的傳說與愛情</h3>
-		<div>
-			嘉賓果(Jabuticaba)在中南美洲不只是原產的特別水果，在巴西還流傳著一個關於嘉賓果的美麗傳說。在當地方言圖皮語中，
-			<span>Jabuti 是「烏龜」的意思，而 Caba 則指「地方」</span>，
-			這意味著將可在果樹附近找到烏龜。相傳勇猛善戰的圖皮人祖先曾所向披靡地征服附近的部落，卻因此熱惱了女巫師，將圖皮族聰慧美麗的女子變成沒有知覺、不會講話的果樹，深情的圖皮族戰士為了守護深愛的女子，終年守在果樹旁邊，隨著時間過去，勇猛的戰士變成行動緩慢的烏龜。戰士的深情感動了天神，天神賜予果樹能結出富含營養的果實，圖皮組的祖先相信，受到天神祝福的果樹，會保佑人們的愛情順遂、長久！
-		</div>
-		<div ><img src="pic02.jpg" width="400"></div>
-		<h3>嘉賓果樹成長的特色</h3>
-		<div>
-			嘉賓果最特別的地方就是「幹生花」，花與果實都是長在樹幹上的，嘉賓果開花時，整株樹幹開滿白色的小花，其壯麗不輸櫻花盛開的美景。花謝後，嘉賓果的果實就在樹幹上生長，像吹氣球一樣慢慢長大，還沒成熟時，翠綠色的果實很耀眼，但皮很厚籽很大顆；當樹葡萄慢慢成熟時，由綠轉紫，皮也慢慢變薄，籽越來越小顆，可以小到跟葡萄籽一樣，而且會非常甜。
-		</div>
-		<h3>資料來源:</h3>
-		<ul>
-			<li><a href="https://greenbox.tw/Home/BlogPostNew/5791" target="_blank">參考網址</a></li>
-		</ul>
-	</body>
+<body>
+<form id ="form01">
+	姓名:<input type="text" name="name01" value="楊舒涵"><br>
+	收件住址:<input type="text" name="address01" value="新北市蘆洲區仁愛街23號2樓"><br>
+	電話:<input type="tel" name="tel01" value="0958921169"><br>
+	電子郵件:<input type="email" name="email01" value="shuhan920320@gmail.com"><br>
+	指定送貨日期:<input type="date" name="date01"><br>
+	水果種類:<br><input type="checkbox" name="fruit" id="fruit01" value="美姬草莓(1斤)">美姬草莓(1斤)300元;
+	購買數量:<input type="number" name="number01"><br>
+	<input type="checkbox" name="fruit" id="fruit02" value="富士蘋果(1公斤)">富士蘋果(1公斤)375元;
+	購買數量:<input type="number" name="number02"><br>
+	<input type="checkbox" name="fruit" id="fruit03" value="芭蕉(1公斤)">芭蕉(1公斤)105元;
+	購買數量:<input type="number" name="number03"><br>
+
+</form>
+
+<button onclick="shoppingInfo()"><h4>結帳</h4></button>
+<div id="demo"></div>
+<script>
+	var text = "<h4>您的購物資訊如下:</h4>";
+	var fruit = function (fruitType,fruitPrice,no){
+		this.Type = fruitType;
+		this.Price = fruitPrice;
+		this.subTotal = function(no){
+			text += "水果種類:" + this.Type + "; 共" + no +"單位<br>";
+			text += "價格小計:" + this.Price *no + "元<br>";
+		};
+	};
+	var fruit01 = new fruit("美姬草莓(1斤)",300, 0);
+	var fruit02 = new fruit("富士蘋果(1公斤)",375, 0);
+	var fruit03 = new fruit("芭蕉(1公斤)",105, 0);
+
+function shoppingInfo() {
+	var x = document.getElementById("form01");
+	var item = " ";
+	var sumToPay = 0;
+	var i;
+	for (i = 0; i < 5; i++){
+		switch (i) {
+	            case 0: item = "姓名: ";break;
+	            case 1: item = "收件地址: ";break;
+	            case 2: item = "電話: ";break;
+	            case 3: item = "電子郵件: ";break;
+	            case 4: item = "指定送貨日期: ";break;
+	    }
+	    text += item + x.elements[i].value + "<br>";
+    }
+for (i =5; i<= 9; i++){
+	 if (x.elements[i].checked === true){
+	      switch (i) {
+	          case 5: fruit01.no = x.elements[i+1].value;
+	                  sumToPay += fruit01.Price * fruit01.no;
+	                  fruit01.subTotal(fruit01.no);
+	                  break;
+	          case 7: fruit02.no = x.elements[i+1].value;
+	                  sumToPay += fruit02.Price * fruit02.no;
+	                  fruit02.subTotal(fruit02.no);
+	                  break;
+	          case 9: fruit03.no = x.elements[i+1].value;
+	                  sumToPay += fruit03.Price * fruit03.no;
+	                  fruit03.subTotal(fruit03.no);
+	                  break;
+	      }
+	 }
+}
+	text += "價格合計:" + sumToPay +	"元<br>";
+	document.getElementById("demo").innerHTML = text;
+	}
+
+
+
+
+</script>
+</body>
 </html>
