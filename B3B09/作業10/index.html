@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>作業10</title>
+    <style>
+      h4 {
+          color: red;
+      }
+      h3 {
+          color: red;
+      }
+
+      label {
+          color: green;
+      }
+      input {
+          color: brown;
+      }
+      div {
+          color: blue;
+          margin: 5px;
+      }
+      table{
+          border-color: dodgerblue;
+          border-style:solid;
+          border-collapse:collapse;
+      }
+      td:nth-child(1){
+          text-align: left;
+          color:brown;
+          border-style: solid;
+          border-color:dodgerblue;
+      }
+      td:nth-child(2){
+          text-align: left;
+          color:blue;
+          border-style: solid;
+          border-color:dodgerblue;
+      }
+      td:nth-child(3){
+          text-align: left;
+          color:blue;
+          border-style: solid;
+          border-color:dodgerblue;
+      }
+      td:nth-child(4){
+          text-align: right;
+          color:red;
+          border-style: solid;
+          border-color:dodgerblue;
+      }
+   </style>
+
+</head>
+<body>
+<form id ="form01">
+    姓名:<input type="text" name="name01" value="楊舒涵"><br>
+    收件住址:<input type="text" name="address01" value="新北市蘆洲區仁愛街23號2樓"><br>
+    電話:<input type="tel" name="tel01" value="0958921169"><br>
+    電子郵件:<input type="email" name="email01" value="shuhan920320@gmail.com"><br>
+    指定送貨日期:<input type="date" name="date01"><br>
+    水果種類:<br><input type="checkbox" name="fruit" id="fruit01" value="拉拉山水蜜桃(1盒) ">拉拉山水蜜桃(1盒)  863元;
+    購買數量:<input type="number" name="number01"><br>
+    <input type="checkbox" name="fruit" id="fruit02" value="加州櫻桃(600g)">加州櫻桃(600g) 865元;
+    購買數量:<input type="number" name="number02"><br>
+    <input type="checkbox" name="fruit" id="fruit03" value="黃金百香果(2斤)">黃金百香果(2斤) 238元;
+    購買數量:<input type="number" name="number03"><br>
+    <input type="checkbox" name="fruit" id="fruit04" value="綠無籽葡萄(1盒)">綠無籽葡萄(1盒) 198元;
+    購買數量:<input type="number" name="number04"><br>
+
+</form>
+<button id="submitBtn" onclick="submitOrder()"><h4>送出</h4></button>
+<div id="demo"></div>
+<script>
+    var text = "<h4>您的購物資訊如下:</h4>";
+    text += "<table>";
+    var fruit = function (fruitType,fruitPrice,no){
+        this.Type = fruitType;
+        this.Price = fruitPrice;
+        this.subTotal = function(no){
+          text += "<tr>";
+          text += "<td>" + "水果種類:" + "</td>";
+          text += "<td>" + this.Type + "</td>";
+          text += "<td>" + no + "單位</td>";
+          text += "<td>" + this.Price * no + "元</td>";
+          text += "</tr>";
+        };
+    };
+    var fruit01 = new fruit("拉拉山水蜜桃(1盒)",863, 0);
+    var fruit02 = new fruit("加州櫻桃(600g)",865, 0);
+    var fruit03 = new fruit("黃金百香果(2斤)",238, 0);
+    var fruit04 = new fruit("綠無籽葡萄(1盒)",198, 0);
+    var isSubmitted = false; //初始未送出狀態
+
+    function submitOrder() {
+        shoppingInfo();
+        isSubmitted = true;
+        document.getElementById("submitBtn").innerHTML = "<h4>確認修正</h4>";
+    }
+
+    function shoppingInfo() {
+        var x = document.getElementById("form01");
+        var item = " ";
+        var sumToPay = 0;
+        var i;
+
+        //清空原有資訊
+        text = "<h4>您的購物資訊如下:</h4>";
+        text += "<table>";
+
+        for (i = 0; i < 5; i++){
+            text += "<tr>";
+            switch (i) {
+                case 0: item = "姓名: ";break;
+                case 1: item = "收件地址: ";break;
+                case 2: item = "電話: ";break;
+                case 3: item = "電子郵件: ";break;
+                case 4: item = "指定送貨日期: ";break;
+            }
+            text += "<td>" + item + "</td>";
+            text += "<td>" + x.elements[i].value + "</td>";
+            text += "<td>" +" "+ "</td>";
+            text += "</tr>";
+        }
+
+        for (i =5; i<= 11; i++){
+            if (x.elements[i].checked === true){
+                switch (i) {
+                    case 5: fruit01.no = x.elements[i+1].value;
+                            fruit01.subTotal(fruit01.no);
+                            sumToPay += fruit01.Price * fruit01.no;
+                            break;
+                    case 7: fruit02.no = x.elements[i+1].value;
+                            fruit02.subTotal(fruit02.no);
+                            sumToPay += fruit02.Price * fruit02.no;
+                            break;
+                    case 9: fruit03.no = x.elements[i+1].value;
+                            fruit03.subTotal(fruit03.no);
+                            sumToPay += fruit03.Price * fruit03.no;
+                            break;
+                    case 11:fruit04.no = x.elements[i+1].value;
+                            fruit04.subTotal(fruit04.no);
+                            sumToPay += fruit04.Price * fruit04.no;
+                            break;
+                }
+            }
+        }
+
+        text += "<tr><td>" + "<h3> 價格合計:</h3> " + "</td><td></td><td></td><td>" + sumToPay + "元 </td></tr>";
+
+        text += "<table>";
+        document.getElementById("demo").innerHTML = text;
+    }
+
+    //監聽所有input欄位的變更
+    var inputs = document.querySelectorAll('input');
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('change', function() {
+            if (isSubmitted) { //若已送出,則重新計算
+                shoppingInfo();
+            }
+        });
+    }
+</script>
+</body>
+</html>
