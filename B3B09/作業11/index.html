@@ -1,0 +1,56 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>作業11</title>
+	<style>
+    @keyframes myanimation{
+		0%   {background:red; left:80px; top:10px;}
+		25%  {background:yellow; left:380px; top:10px;}
+		50%  {background:blue; left:380px; top:210px;}
+		75%  {background:green; left:80px; top:210px;}
+		100% {background:red; left:80px; top:10px;}
+    }
+	.box {
+		width: 100px;
+	  	height: 100px;
+        color: white;
+        font-weight: bold;
+        font-size: x-large;
+        border-radius: 50%;
+	  	background-color: lightblue;
+	  	border: none;
+	  	text-align: center;
+	  	line-height: 100px;
+	  	position: absolute;
+	  	animation: myanimation 4s ease-in-out alternate infinite;
+	}
+    </style>
+	<!-- 將 jQuery 庫文件放在這裡 -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+        $(document).ready(function(){
+            $('#btn1').mouseover(function(){
+                $(".box").css("border-radius", "0%");
+            })
+            $('#btn2').mouseover(function(){
+                $(".box").css("border-radius", "50%");
+            })
+            $('#btn3').mouseover(function(){
+                $("#box01").html("B3B09");
+            })
+            $('#btn4').mouseover(function(){
+                $("#box01").html("楊舒涵");
+            })
+        });
+    </script>
+</head>
+
+<body>
+<div class="box" id="box01">B3B09楊舒涵</div>
+<input type="button" id="btn1" value="方形"><br>
+<input type="button" id="btn2" value="圓形"><br>
+<input type="button" id="btn3" value="B3B09"><br>
+<input type="button" id="btn4" value="楊舒涵"><br>
+</body>
+
+</html>
