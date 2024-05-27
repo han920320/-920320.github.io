@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>作業13</title>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/skitter.styles.css"/>
+    <style>
+        .box_skitter_large {
+            width: 1000px;
+            height: 630px;
+        }
+
+        body {
+            background-color: #000000;
+        }
+
+        /* 新增這段CSS */
+        .box_skitter_large img {
+            max-width: 800px; /* 限制圖片最大寬度為800px */
+            max-height: 500px; /* 限制圖片最大高度為500px */
+        }
+    </style>
+    <script src="js/jquery-1.5.2.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.animate-colors-min.js"></script>
+    <script src="js/jquery.skitter.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.box_skitter_large').skitter({
+                hideTools: true
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="border_box">
+    <div class="box_skitter box_skitter_large">
+        <ul>
+            <li>
+                <img src="images/01.jpg" class="cubeShow"/>
+                <div class="label_text">
+                    <p>卜卜商店是一間位於中山站的復古咖啡廳。2024.01.18</p>
+                </div>
+                <img src="images/02.jpg" class="cubeJelly"/>
+                <div class="label_text">
+                    <p>一隻很溫順的貓咪。</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/03.jpg" class="directionRight"/>
+                <div class="label_text">
+                    <p>好喝的燒酒。</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/04.jpg" class="paralell"/>
+                <div class="label_text">
+                    <p>在圓山拍到美麗的落日。</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/05.jpg" class="upBars"/>
+                <div class="label_text">
+                    <p>聰明的邊牧。</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/06.jpg" class="circles"/>
+                <div class="label_text">
+                    <p>一間很日系的商店，裡面賣很多瓷器。</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/07.png" class="fade"/>
+                <div class="label_text">
+                    <p>Sweet & Sour Life是一家簡約風咖啡廳。</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/08.jpg" class="circlesInside"/>
+                <div class="label_text">
+                    <p>可頌造型的電話裝飾品。</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/09.png" class="glassBlock"/>
+                <div class="label_text">
+                    <p>Cafe Insomnie 是一家法式裝潢的咖啡廳。</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/10.jpg" class="cubeSize"/>
+                <div class="label_text">
+                    <p>這是一隻挪威森林貓咪。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
